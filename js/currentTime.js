@@ -1,21 +1,21 @@
+let imageIndex = 2;
+
 function updateImage() {
-  function getImageId(index) {
-    const imageLinks = [
-      { id: '1az2xz_fotP7AchAR6Bnv7l6_-yv3hIFb', location: ''},
-      { id: '15sdB7_U2arn3GcW077G16RiYSDCdasIP', location: ''},
-      { id: '16H-pxJV83TbOnMaXrKV7uOrQtT1mbCCk', location: ''},
-      { id: '1PI6AZPR4PehE1OaKQSKlaEEJTcPpjDJd', location: ''},
-      { id: '1i61fn9ZaIFe84nNhFARBECtBY1UBpxav', location: ''},
-      { id: '1zASJXAaoh0AjD0n539LTObEiqlZpCqkw', location: ''},
-      { id: '1tBiop5JQ_A02sele8DLjz-BZvVGIj3_u', location: ''},
-      { id: '1Fydg3qPu9ZLA7rt0Zo2qP0ZdYrCmhQ4s', location: ''},
-    ];
+  const images = [
+    { id: '1az2xz_fotP7AchAR6Bnv7l6_-yv3hIFb', location: '' },
+    { id: '15sdB7_U2arn3GcW077G16RiYSDCdasIP', location: '' },
+    { id: '16H-pxJV83TbOnMaXrKV7uOrQtT1mbCCk', location: '' },
+    { id: '1PI6AZPR4PehE1OaKQSKlaEEJTcPpjDJd', location: '' },
+    { id: '1i61fn9ZaIFe84nNhFARBECtBY1UBpxav', location: '' },
+    { id: '1zASJXAaoh0AjD0n539LTObEiqlZpCqkw', location: '' },
+    { id: '1tBiop5JQ_A02sele8DLjz-BZvVGIj3_u', location: '' },
+    { id: '1Fydg3qPu9ZLA7rt0Zo2qP0ZdYrCmhQ4s', location: '' },
+  ];
 
-    if (index < imageLinks.length) return imageLinks[index + 1];
-    return imageLinks[0];
-  }
+  const getImageId = (index) => ((index < images.length) ? images[index + 1].id : images[0].id);
 
-  document.getElementById('airtame-background').textContent = `https://drive.google.com/uc?id=${getImageId()}`;
+  document.getElementById('airtame-background').src = `https://drive.google.com/uc?id=${getImageId(imageIndex)}`;
+  imageIndex += 1;
 }
 function updateClock() {
   function getTime() {

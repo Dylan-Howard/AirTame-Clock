@@ -6,6 +6,7 @@
   <body>
     <div id="airtame-clock">
       <img id="airtame-background" src="https://drive.google.com/uc?id=1az2xz_fotP7AchAR6Bnv7l6_-yv3hIFb"/>
+      <div id="airtame-shadow"></div>
       <div id="airtame-text">
         <span id="airtame-time"></span>
         <!-- <span id="airtame-location">Bowling Green, KY</span> -->
@@ -13,24 +14,25 @@
     </div>
   </body>
   <script>
+    const images = [
+      { id: '1az2xz_fotP7AchAR6Bnv7l6_-yv3hIFb', location: '' },
+      { id: '15sdB7_U2arn3GcW077G16RiYSDCdasIP', location: '' },
+      { id: '16H-pxJV83TbOnMaXrKV7uOrQtT1mbCCk', location: '' },
+      { id: '1PI6AZPR4PehE1OaKQSKlaEEJTcPpjDJd', location: '' },
+      { id: '1i61fn9ZaIFe84nNhFARBECtBY1UBpxav', location: '' },
+      { id: '1zASJXAaoh0AjD0n539LTObEiqlZpCqkw', location: '' },
+      { id: '1tBiop5JQ_A02sele8DLjz-BZvVGIj3_u', location: '' },
+      { id: '1Fydg3qPu9ZLA7rt0Zo2qP0ZdYrCmhQ4s', location: '' },
+      { id: '1ha8Lo8SlEwthMlhV2Uj7Jtpn67uT1gt_', location: '' },
+      { id: '1dKD9-nRICqI5__60jPKdeMWs_y2LYFx5', location: '' },
+    ];
+    const getRandomNumber = (max) => Math.floor(Math.random() * max);
+
     function updateImage() {
-      function getImageId(index) {
-        const imageLinks = [
-          { id: '1az2xz_fotP7AchAR6Bnv7l6_-yv3hIFb', location: ''},
-          { id: '15sdB7_U2arn3GcW077G16RiYSDCdasIP', location: ''},
-          { id: '16H-pxJV83TbOnMaXrKV7uOrQtT1mbCCk', location: ''},
-          { id: '1PI6AZPR4PehE1OaKQSKlaEEJTcPpjDJd', location: ''},
-          { id: '1i61fn9ZaIFe84nNhFARBECtBY1UBpxav', location: ''},
-          { id: '1zASJXAaoh0AjD0n539LTObEiqlZpCqkw', location: ''},
-          { id: '1tBiop5JQ_A02sele8DLjz-BZvVGIj3_u', location: ''},
-          { id: '1Fydg3qPu9ZLA7rt0Zo2qP0ZdYrCmhQ4s', location: ''},
-        ];
+      const getImageId = (index) => ((index < images.length) ? images[index + 1].id : images[0].id);
 
-        if (index < imageLinks.length) return imageLinks[index + 1];
-        return imageLinks[0];
-      }
-
-      document.getElementById('airtame-background').textContent = `https://drive.google.com/uc?id=${getImageId()}`;
+      document.getElementById('airtame-background').src = `https://drive.google.com/uc?id=${getImageId(imageIndex)}`;
+      imageIndex += 1;
     }
     function updateClock() {
       function getTime() {
@@ -46,10 +48,12 @@
       document.getElementById('airtame-time').textContent = getTime();
     }
 
+    let imageIndex = getRandomNumber(images.length - 1);
+
     updateClock();
     setInterval(() => updateClock(), 5000);
     updateImage();
-    setInterval(() => updateClock(), 10000);
+    setInterval(() => updateImage(), 60000);
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap');
@@ -71,19 +75,29 @@
       top: 0;
       left: 0;
     }
+    #airtame-shadow {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 22rem;
+      width: 100vw;
+
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.3));
+    }
     #airtame-text {
       display: block;
       text-align: left;
       position: absolute;
       bottom: 3.6rem;
       left: 7.2rem;
-      color:#ffffff;
-      opacity: .9;
+      color:#fafafa;
+      opacity: .95;
       font-family: 'League Spartan', sans-serif;
     }
     #airtame-time {
       display: block;
-      font-size: 7.8rem;
+      font-size: 9.2rem;
     }
     #airtame-location {
       display: block;
