@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500&display=swap');
+#airttame-clock {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+#airtame-time {
+  display: block;
+  text-align: left;
+  position: absolute;
+  bottom: 0rem;
+  left: 0rem;
+  color:#ffffff;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 10rem;
+}
