@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <div id="airtame-clock">
+      <img id="airtame-background" src="https://drive.google.com/uc?id=1az2xz_fotP7AchAR6Bnv7l6_-yv3hIFb"/>
+      <div id="airtame-text">
+        <span id="airtame-time"></span>
+        <span id="airtame-location">Bowling Green, KY</span>
+      </div>
+    </div>
+  </body>
+  <script>
+    function updateClock() {
+      function getTime() {
+        const [meridiem, hours, minutes] = ((today) => [
+          ((hour) => ((hour >= 12) ? 'PM' : 'AM'))(today.getHours()),
+          ((hour) => ((hour > 12) ? hour - 12 : hour))(today.getHours()),
+          ((min) => ((min > 9) ? min : `0${min}`))(today.getMinutes()),
+        ])(new Date());
+
+        return `${hours}:${minutes} ${meridiem}`;
+      }
+
+      document.getElementById('airtame-time').textContent = getTime();
+    }
+
+    updateClock();
+    setInterval(() => updateClock(), 5000);
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap');
+    body { border: 0; }
+    #airttame-clock {
+      display: block;
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+    }
+    #airtame-background {
+      display: block;
+      height: 100vh;
+      min-width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    #airtame-text {
+      display: block;
+      text-align: left;
+      position: absolute;
+      bottom: 3.6rem;
+      left: 7.2rem;
+      color:#ffffff;
+      opacity: .9;
+      font-family: 'League Spartan', sans-serif;
+    }
+    #airtame-time {
+      display: block;
+      font-size: 5.8rem;
+    }
+    #airtame-location {
+      display: block;
+      font-size: 2.9rem;
+    }
+  </style>
+</html>
