@@ -31,7 +31,7 @@
     function updateImage() {
       const getImageId = (index) => ((index < images.length) ? images[index + 1].id : images[0].id);
 
-      document.getElementById('airtame-background').src = `https://drive.google.com/uc?id=${getImageId(imageIndex)}`;
+      document.getElementById('airtame-background').src = 'https://drive.google.com/uc?id=' + getImageId(imageIndex);
       imageIndex += 1;
     }
     function updateClock() {
